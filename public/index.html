@@ -1,9 +1,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Lista de Tarefas Fofa</title>
+    <title>Me organize</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
@@ -23,18 +24,49 @@
 
         <aside class="sidebar">
             <header>
-                <h1>Minhas Tarefas <span class="emoji">✨</span></h1>
+                <h1>Me organize  <span class="emoji">⭐</span></h1>
                 <p>Sua central de produtividade</p>
             </header>
 
             <section id="user-panel">
-                <div id="login-area">
-                    <h2>Bem-vindo(a)!</h2>
-                    <p class="sidetext">Insira seu e-mail para começar.</p>
-                    <input type="email" id="email-input" placeholder="seu.email@exemplo.com">
-                    <button id="load-tasks-btn">Entrar</button>
-                    <p id="error-message" class="error-text"></p>
-                </div>
+    <div id="login-area">
+        <h2>Bem-vindo(a)!</h2>
+        <p class="sidetext">Insira seu e-mail e escolha o melhor horário para receber seus lembretes.</p>
+        
+        <label for="email-input">Seu e-mail:</label>
+        <input type="email" id="email-input" placeholder="seu.email@exemplo.com">
+        
+        <label for="time-input">Horário do lembrete:</label>
+        <select id="time-input">
+            <option value="01:00">01:00</option>
+            <option value="02:00">02:00</option>
+            <option value="03:00">03:00</option>
+            <option value="04:00">04:00</option>
+            <option value="05:00">05:00</option>
+            <option value="06:00">06:00</option> 
+            <option value="07:00">07:00</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00" selected>09:00 (Padrão)</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+            <option value="22:00">22:00</option>
+            <option value="23:00">23:00</option>
+            <option value="23:00">00:00</option>
+        </select>
+
+        <button id="load-tasks-btn">Entrar</button>
+        <p id="error-message" class="error-text"></p>
+    </div>
 
                 <div id="welcome-area" class="hidden">
                     <p class="welcome-user"></p>

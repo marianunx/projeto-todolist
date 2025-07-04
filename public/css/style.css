@@ -1,36 +1,45 @@
 :root {
-    --bg-color: #fdf2f2;
-    --sidebar-bg: rgba(255, 255, 255, 0.6);
-    --content-bg: rgba(255, 255, 255, 0.9);
-    --primary-color: #e98e8e;
-    --primary-hover: #d67a7a;
-    --checkbox-color: #a7e8a7;
-    --text-color: #444;
-    --title-font: 'Nunito', sans-serif;
-    --body-font: 'Open Sans', sans-serif;
+    --bg-color: #0a0e17; 
+    --sidebar-bg: rgba(20, 28, 44, 0.6); 
+    --content-bg: rgba(30, 41, 59, 0.7); 
+    --primary-color: #38bdf8; 
+    --primary-hover: #7dd3fc;
+    --secondary-color: #c084fc; 
+    --text-color: #e2e8f0; 
+    --border-color: rgba(148, 163, 184, 0.2); 
+    
+    /*Fontes*/
+    --title-font: 'Orbitron', sans-serif;
+    --body-font: 'Roboto', sans-serif;
 }
 
-/* --- ANIMAÇÕES E FUNDO (sem grandes mudanças) --- */
-@keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; } }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+/*Animações*/
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
 
 body {
     font-family: var(--body-font);
-    background: linear-gradient(135deg, #fce3e3, #f0e6f7);
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
     margin: 0;
     color: var(--text-color);
     overflow: hidden;
 }
 
-.floating-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-.floating-shapes .shape { position: absolute; bottom: -150px; background-color: rgba(255, 255, 255, 0.3); border-radius: 50%; animation: float 25s infinite ease-in; }
-.floating-shapes .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-duration: 22s; }
-.floating-shapes .shape:nth-child(2) { width: 100px; height: 100px; left: 30%; animation-delay: 5s; animation-duration: 28s; }
-.floating-shapes .shape:nth-child(3) { width: 50px; height: 50px; left: 55%; animation-delay: 2s; animation-duration: 18s; }
-.floating-shapes .shape:nth-child(4) { width: 120px; height: 120px; left: 75%; animation-delay: 8s; animation-duration: 35s; }
-.floating-shapes .shape:nth-child(5) { width: 60px; height: 60px; left: 90%; animation-delay: 12s; animation-duration: 20s; }
-
-/* --- NOVO LAYOUT DE DASHBOARD --- */
 .dashboard-layout {
     display: flex;
     width: 100vw;
@@ -40,67 +49,163 @@ body {
 .sidebar {
     width: 320px;
     background-color: var(--sidebar-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 40px 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid var(--border-color);
     text-align: center;
+    transition: width 0.3s ease;
 }
 
 #main-content {
     flex-grow: 1;
     padding: 40px;
-    background-color: var(--content-bg);
-    overflow-y: auto; /* Permite scroll apenas no conteúdo principal */
+    overflow-y: auto; 
 }
 
-/* --- ESTILOS DA SIDEBAR --- */
-.sidebar header h1 { font-family: var(--title-font); color: var(--primary-color); margin: 0; font-size: 2.2em; }
-.sidebar header p { margin: 5px 0 0 0; color: #777; }
-.sidebar footer { margin-top: 20px; color: #aaa; }
-.sidetext { margin: 0 0 15px 0; color: #666; }
+.sidebar header h1 {
+    font-family: var(--title-font);
+    color: var(--text-color);
+    text-shadow: 0 0 8px var(--primary-color);
+    margin: 0 0 10px 0;
+    font-size: 2.2em;
+}
+.sidebar header p { color: #94a3b8; }
+.sidebar footer { color: #64748b; font-size: 0.9em; }
 
 #user-panel { margin: auto 0; }
-#user-panel h2 { font-family: var(--title-font); }
-#user-panel input { width: 100%; box-sizing: border-box; margin-bottom: 10px; }
-#user-panel button { width: 100%; }
+#user-panel h2 { font-family: var(--title-font); color: var(--secondary-color); }
+#user-panel input, #user-panel select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: rgba(15, 23, 42, 0.5); 
+    color: var(--text-color);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+#user-panel input:focus, #user-panel select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+#user-panel button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--title-font);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+#user-panel button:hover { background-color: var(--primary-hover); }
 
-#welcome-area .welcome-user { font-family: var(--title-font); font-size: 1.5em; margin: 0; }
+#welcome-area .welcome-user {
+    font-family: var(--title-font);
+    font-size: 1.5em;
+    color: var(--text-color);
+}
 .task-summary {
-    background-color: rgba(255,255,255,0.5);
+    background: linear-gradient(135deg, rgba(192, 132, 252, 0.1), rgba(56, 189, 248, 0.1));
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 15px;
     margin-top: 20px;
 }
-.task-summary p { margin: 0; font-size: 1.1em; color: var(--primary-color); font-weight: bold; }
+.task-summary p { margin: 0; font-weight: bold; color: var(--secondary-color); }
 
-/* --- ESTILOS DO CONTEÚDO PRINCIPAL --- */
-#add-task-form { display: flex; gap: 10px; margin-bottom: 30px; }
-#new-task-input { flex-grow: 1; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; }
-#add-task-form button { padding: 15px 25px; white-space: nowrap; }
+#add-task-form { display: flex; gap: 15px; margin-bottom: 30px; }
+#new-task-input {
+    flex-grow: 1;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: rgba(15, 23, 42, 0.5);
+    color: var(--text-color);
+    font-size: 1em;
+}
+#new-task-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+#add-task-form button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--title-font);
+    font-weight: 700;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    white-space: nowrap;
+}
+
 
 #task-list { list-style: none; padding: 0; }
-#task-list li { /* Estilos mantidos, pois são bons */
-    display: flex; align-items: center; padding: 15px; background-color: #fff;
-    border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: all 0.3s ease; animation: fadeIn 0.5s ease-out;
+#task-list li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(15, 23, 42, 0.3);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
 }
-/* ... (demais estilos de 'li', checkbox, etc., podem ser mantidos) ... */
-#task-list li:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-#task-list li input[type="checkbox"] { appearance: none; min-width: 22px; height: 22px; border: 2px solid var(--checkbox-color); border-radius: 50%; cursor: pointer; position: relative; transition: background-color 0.3s ease; margin-right: 15px; }
-#task-list li input[type="checkbox"]:checked { background-color: var(--checkbox-color); }
-#task-list li input[type="checkbox"]:checked::before { content: '✔'; color: white; font-size: 14px; font-weight: bold; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-#task-list li span { flex-grow: 1; transition: all 0.3s ease; }
-#task-list li.completed span { text-decoration: line-through; color: #aaa; }
-#task-list li .delete-btn { background: none; border: none; color: #ccc; cursor: pointer; font-size: 1.5em; padding: 0 5px; line-height: 1; transition: color 0.3s ease; }
-#task-list li:hover .delete-btn { color: #e74c3c; }
+#task-list li:hover {
+    background-color: rgba(30, 41, 59, 0.6);
+    border-left-color: var(--secondary-color);
+}
 
+#task-list li input[type="checkbox"] {
+    appearance: none;
+    min-width: 20px; height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px; 
+    cursor: pointer;
+    position: relative;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+#task-list li input[type="checkbox"]:hover { animation: pulse 1s infinite; }
+#task-list li input[type="checkbox"]:checked {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+#task-list li input[type="checkbox"]:checked::before {
+    content: '★'; 
+    color: var(--bg-color);
+    font-size: 14px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-#empty-state { text-align: center; padding: 60px 20px; opacity: 0.7; }
-.empty-state-illustration { font-size: 4em; margin-bottom: 10px; }
+#task-list li span { flex-grow: 1; }
+#task-list li.completed span { text-decoration: line-through; color: #64748b; }
+#task-list li .delete-btn {
+    background: none; border: none; color: #64748b; cursor: pointer;
+    font-size: 1.5em; padding: 0 5px; transition: color 0.3s ease;
+}
+#task-list li:hover .delete-btn { color: var(--primary-color); }
 
-.error-text { color: #e74c3c; margin-top: 10px; min-height: 1em; }
+#empty-state { text-align: center; padding: 60px 20px; opacity: 0.6; }
+.error-text { color: #f87171; min-height: 1em; }
 .hidden { display: none !important; }
+
+@media (max-width: 900px) {
+    .dashboard-layout { flex-direction: column; height: auto; }
+    .sidebar { width: 100%; box-sizing: border-box; border-right: none; }
+    #main-content { overflow-y: visible; }
+}
