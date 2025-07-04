@@ -1,5 +1,7 @@
 # projeto-todolist
 
+Esta é uma aplicação web completa que atua como um sistema de To-Do List (Lista de Tarefas) pessoal. O projeto permite que usuários gerenciem suas tarefas diárias de forma eficiente e recebam lembretes por e-mail em horários personalizados.
+
 Como Rodar o Projeto Localmente:
 
 É necessário o Node.js instalado em sua máquina. O npm será instalado junto com o Node.js.
